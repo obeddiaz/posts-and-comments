@@ -31,3 +31,27 @@
     transform: rotate(360deg);
   }
 }
+
+.post-image {
+  width: 100%;
+}
+
+.post-text {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin:0;
+}
+.post-text.expanded {
+  white-space: initial;
+  overflow: visible;
+}
+
+.search-bar {
+  background-color: #cecece;
+}
+
+.comment-user-image {
+  /* width: 90%; */
+}
