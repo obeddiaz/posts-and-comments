@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { Link } from 'react-router-dom';
-import Pagination from './pagination';
+
+import Post from './Post';
+import Pagination from '../pagination';
+import '../../styles/Posts.scss';
 
 
 export default class Posts extends React.Component {
@@ -12,14 +13,8 @@ export default class Posts extends React.Component {
   }
 
   state = {
-    totalItems: 0,
-    postsPerPage: 10,
-    activePage: 1,
-    textFilter: '',
     expandedPosts: {},
   }
-
-  filteredPosts = [];
 
   componentDidMount() {
     this.props.getPosts();
@@ -78,7 +73,7 @@ export default class Posts extends React.Component {
             </div>
             <div className="col-md-4 col-xs-12">
               <select className="form-control" value={searchBy} onChange={this.handleSearchBy}>\
-                { searchTypes.map((option) => (<option value={option}>{option}</option>)) }
+                { searchTypes.map((option, index) => (<option key={`option-${index}`} value={option}>{option}</option>)) }
               </select>
             </div>
             <div className="col-md-4 col-xs-12 align-self-center">
@@ -108,22 +103,12 @@ export default class Posts extends React.Component {
             {
               paginatedPosts
               && paginatedPosts.map((post, index) => (
-                <React.Fragment key={post.id}>
-                  <div className="col-md-4 col-xs-12 mb-2 mt-2">
-                    <img className="post-image" src="images/dummy-image.jpg" alt="Post" />
-                  </div>
-                  <div className="col-md-6 col-xs-12 mb-2 mt-2 text-left">
-                    <Link className="h6" to={`posts/${post.id}`}>{post.title}</Link>
-                    <p className={classNames('post-text', { expanded: expandedPosts[index] })}>
-                      {post.body}
-                    </p>
-                    <div className="text-right">
-                      <button className="btn btn-link" onClick={() => this.toggleExpandCollapse(index)}>
-                        Show { expandedPosts[index] ? 'Less' : 'More' }
-                      </button>
-                    </div>
-                  </div>
-                </React.Fragment>
+                  <Post
+                    key={post.id}
+                    onExpandClick={() => this.toggleExpandCollapse(index)}
+                    isExpanded={expandedPosts[index]}
+                    {...post}
+                    />
               ))
             }
           </div>

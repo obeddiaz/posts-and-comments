@@ -13,7 +13,9 @@ const getPostsPerPage = (state) => (state.postReducer.postsPerPage);
 
 export const getFilteredPosts = createSelector(
   [getPosts, getSearchText, getSearchBy],
-  (posts, searchText, searchBy) => (searchText ? posts.filter((post) => (post[searchBy].includes(searchText))) : posts),
+  (posts, searchText, searchBy) => (searchText
+    ? posts.filter((post) => (post[searchBy].includes(searchText)))
+    : posts),
 );
 
 export const getPaginatedPosts = createSelector(

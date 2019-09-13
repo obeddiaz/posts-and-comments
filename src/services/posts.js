@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
+import configuration from '../configuration';
 
-// const baseUrl = 'https://jsonplaceholder.typicode.com';
-const baseUrl = 'http://www.somaku.com';
+const { baseUrl } = configuration;
 
 export function getPosts() {
   return axios.get(`${baseUrl}/posts`)

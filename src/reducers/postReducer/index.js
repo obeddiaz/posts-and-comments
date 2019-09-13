@@ -1,9 +1,10 @@
 import {
+  GET_POSTS,
   SEARCH_POST_TEXT,
   GET_POSTS_SUCCESS,
   CHANGE_POSTS_PAGE,
   CHANGE_POSTS_SEARCH_TYPE,
-} from '../../constants';
+} from '../../constants/posts';
 
 const INITIAL_STATE = {
   searchText: '',
@@ -16,6 +17,8 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case GET_POSTS:
+      return INITIAL_STATE;
     case GET_POSTS_SUCCESS:
       return {
         ...INITIAL_STATE,

@@ -1,0 +1,19 @@
+.post-image {
+  width: 100%;
+}
+
+.post-text {
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin:0;
+  &.expanded {
+    white-space: initial;
+    overflow: visible;
+  }
+}
+
+.search-bar {
+  background-color: #cecece;
+}

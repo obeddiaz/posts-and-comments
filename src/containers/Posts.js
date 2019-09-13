@@ -1,12 +1,18 @@
 import { connect } from 'react-redux';
 
-import Posts from '../components/Posts';
+import Posts from '../components/Posts/index';
 import * as postActions from '../actions/posts';
 import { getFilteredPosts, getPaginatedPosts } from '../selectors/posts';
 
 
 function mapStateToProps(state) {
-  const { searchText, page, postsPerPage, searchBy, searchTypes } = state.postReducer;
+  const {
+    searchText,
+    page,
+    postsPerPage,
+    searchBy,
+    searchTypes,
+  } = state.postReducer;
   const totalPosts = getFilteredPosts(state);
   return {
     searchText,

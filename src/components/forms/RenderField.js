@@ -1,39 +1,39 @@
 import React from 'react';
 
+const formErrors = (error, warning) => {
+  if (!error && !warning) return null;
+  return (
+    <div className="form-error-container pull-right">
+        {
+        (error && <small className="form-error"><i className="fa fa-exclamation-triangle" />{error}</small>)
+            || (warning && <small className="form-warn"><i className="fa fa-exclamation-triangle" />{warning}</small>)
+        }
+    </div>
+  );
+};
+
 const renderField = ({
   input,
-  label,
+  placeholder,
   type,
   className,
   meta: { touched, error, warning },
 }) => (
     <div>
-      {
-        label
-        && <label>{label}</label>
-      }
-      <div>
-        <input {...input} className={className} placeholder={label} type={type}/>
-        {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-      </div>
+      <input {...input} className={className} placeholder={placeholder} type={type}/>
+      {touched && formErrors(error, warning)}
     </div>
 );
 
 const renderTextArea = ({
   input,
-  label,
+  placeholder,
   className,
   meta: { touched, error, warning },
 }) => (
       <div>
-        {
-          label
-          && <label>{label}</label>
-        }
-        <div>
-          <textarea {...input} className={className} placeholder={label} />
-          {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-        </div>
+        <textarea {...input} className={className} placeholder={placeholder} />
+        { touched && formErrors(error, warning) }
       </div>
 );
 

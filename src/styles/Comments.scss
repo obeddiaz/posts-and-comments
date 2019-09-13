@@ -1,0 +1,26 @@
+.comment-form-container {
+  .form {
+    &-error {
+      color: #dc3545;
+    }
+    &-warn {
+      color: #ffc107
+    }
+  }
+  .input-comment {
+    height: 100px;
+    resize: none;
+  }
+}
+
+.comments-container {
+  .comment-email {
+    color: #0081ab;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .submit-btn-container {
+    order: 1;
+  }
+}

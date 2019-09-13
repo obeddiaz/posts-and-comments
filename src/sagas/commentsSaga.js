@@ -18,8 +18,20 @@ function* requestComments(action) {
   }
 }
 
+function* savePostComment(action) {
+  try {
+    const { postId, commentInfo } = action;
+    yield put({ type: commentTypes.SAVE_POST_COMMENT_LOADING, isLoading: true });
+    const comment = yield call(commentsServices.savePostComments, postId, commentInfo);
+    yield put({ type: commentTypes.SAVE_POST_COMMENT_SUCCESS, comment });
+  } catch (error) {
+    yield put({ type: commentTypes.SAVE_POST_COMMENT_FAILURE });
+  }
+}
+
 const watchers = [
   takeEvery(commentTypes.GET_POST_COMMENTS, requestComments),
+  takeEvery(commentTypes.SAVE_POST_COMMENT, savePostComment),
 ];
 
 export default watchers;
