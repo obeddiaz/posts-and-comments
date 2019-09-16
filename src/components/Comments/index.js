@@ -44,28 +44,36 @@ export default class Comments extends React.Component {
       message,
       messageType,
       selectedPost,
+      isCommentsLoading,
+      isPostLoading,
     } = this.props;
     return (
       <>
         <div className="container">
-          <div className="row">
-            <div className="col-md-4 col-xs-12 mb-2 mt-2">
-              <img className="post-image" src="/images/dummy-image.jpg" alt="Post" />
-            </div>
-            <div className="col-md-6 col-xs-12 mb-2 mt-2 text-left">
-              <h3>{selectedPost.title}</h3>
-              <p>
-                {selectedPost.body}
-              </p>
-            </div>
-          </div>
+          {
+            !isPostLoading
+            && <div className="row">
+                <div className="col-md-4 col-xs-12 mb-2 mt-2">
+                  <img className="post-image" src="/images/dummy-image.jpg" alt="Post" />
+                </div>
+                <div className="col-md-6 col-xs-12 mb-2 mt-2 text-left">
+                  <h3>{selectedPost.title}</h3>
+                  <p>
+                    {selectedPost.body}
+                  </p>
+                </div>
+              </div>
+          }
           <div className="row comments-container">
             <div className="col-12">
               <h4>Post Comments: </h4>
             </div>
             {
-            comments
-            && comments.map((comment) => (<Comment key={comment.id} { ...comment } />))
+              comments
+              && comments.map((comment) => (<Comment key={comment.id} { ...comment } />))
+            }
+            {
+              isCommentsLoading && <div className="col-12"><i className="fa fa-spinner fa-spin" /> Loading</div>
             }
           </div>
         </div>

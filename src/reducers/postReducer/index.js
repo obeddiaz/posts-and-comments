@@ -22,7 +22,7 @@ export default (state = INITIAL_STATE, action) => {
       };
     case types.GET_POST_BY_ID_SUCCESS:
       return {
-        ...INITIAL_STATE,
+        ...state,
         selectedPost: action.data,
       };
     case types.SEARCH_POST_TEXT:

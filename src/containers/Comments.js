@@ -10,8 +10,10 @@ function mapStateToProps(state) {
       error,
       message,
       messageType,
+      isLoading: isCommentsLoading,
     },
     postReducer: {
+      isLoading: isPostLoading,
       selectedPost,
     },
   } = state;
@@ -21,6 +23,8 @@ function mapStateToProps(state) {
     error,
     message,
     messageType,
+    isCommentsLoading,
+    isPostLoading,
   };
 }
 
