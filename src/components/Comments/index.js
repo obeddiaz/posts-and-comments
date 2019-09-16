@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-bootstrap/Alert';
 
 import Comment from './Comment';
 import CommentsForm from '../forms/CommentForm';
@@ -8,6 +9,7 @@ import '../../styles/Comments.scss';
 export default class Comments extends React.Component {
   static propTypes = {
     getPostComments: PropTypes.func.isRequired,
+    savePostComment: PropTypes.func.isRequired,
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,7 +35,7 @@ export default class Comments extends React.Component {
   }
 
   render() {
-    const { comments } = this.props;
+    const { comments, message, messageType } = this.props;
     return (
       <>
       <div className="container">
@@ -46,6 +48,12 @@ export default class Comments extends React.Component {
       </div>
       <div className="comment-form-container pb-5 pt-5">
         <div className="container">
+          {
+            message
+            && <Alert variant={messageType}>
+                  {message}
+               </Alert>
+          }
           <CommentsForm onSubmit={this.onCommentSubmit} />
         </div>
       </div>

@@ -17,3 +17,9 @@
 .search-bar {
   background-color: #cecece;
 }
+
+.user-info-tooltip {
+  .tooltip-inner > div {
+    text-align: left;
+  }
+}

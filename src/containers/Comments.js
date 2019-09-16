@@ -4,16 +4,26 @@ import Comments from '../components/Comments/index';
 import * as commentActions from '../actions/comments';
 
 function mapStateToProps(state) {
-  const { comments } = state.commentReducer;
+  const {
+    comments,
+    error,
+    message,
+    messageType,
+  } = state.commentReducer;
   return {
     comments,
+    error,
+    message,
+    messageType,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getPostComments: (id) => dispatch(commentActions.getPostComments(id)),
-    savePostComment: (postId, commentInfo) => dispatch(commentActions.savePostComment(postId, commentInfo)),
+    savePostComment: (postId, commentInfo) => (
+      dispatch(commentActions.savePostComment(postId, commentInfo))
+    ),
   };
 }
 

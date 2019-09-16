@@ -15,6 +15,7 @@ function* requestPosts() {
   } catch (error) {
     yield put({ type: postTypes.GET_POSTS_FAILURE });
   }
+  yield put({ type: postTypes.GET_POSTS_LOADING, isLoading: false });
 }
 
 const watchers = [

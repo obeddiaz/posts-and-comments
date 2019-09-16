@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
+import UserInfo from './UserInfo';
+
+
 const Post = (props) => {
   const {
     isExpanded,
@@ -9,6 +12,7 @@ const Post = (props) => {
     title,
     body,
     onExpandClick,
+    userInfo,
   } = props;
   return (
     <>
@@ -25,6 +29,9 @@ const Post = (props) => {
             Show { isExpanded ? 'Less' : 'More' }
           </button>
         </div>
+        {
+          userInfo && <UserInfo data={userInfo} />
+        }
       </div>
     </>
   );

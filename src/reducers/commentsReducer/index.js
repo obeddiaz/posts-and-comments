@@ -1,25 +1,37 @@
-import {
-  GET_POST_COMMENTS_LOADING,
-  GET_POST_COMMENTS_SUCCESS,
-  GET_POST_COMMENTS_FAILURE,
-  SAVE_POST_COMMENT_SUCCESS,
-} from '../../constants';
+import * as types from '../../constants/comments';
 
 const INITIAL_STATE = {
   comments: [],
+  isLoading: false,
+  showAlert: true,
 };
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case GET_POST_COMMENTS_SUCCESS:
+    case types.GET_POST_COMMENTS_SUCCESS:
       return {
         ...INITIAL_STATE,
         comments: action.data,
       };
-    case SAVE_POST_COMMENT_SUCCESS:
+    case types.SAVE_POST_COMMENT_SUCCESS:
       return {
         ...state,
         comments: [...state.comments, action.comment],
+        message: action.message,
+        messageType: 'success',
+      };
+    case types.SAVE_POST_COMMENT_LOADING:
+    case types.GET_POST_COMMENTS_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading,
+      };
+    case types.SAVE_POST_COMMENT_FAILURE:
+    case types.GET_POST_COMMENTS_FAILURE:
+      return {
+        ...state,
+        message: action.message,
+        messageType: 'danger',
       };
     default:
       return state;

@@ -18,6 +18,7 @@ export default class Posts extends React.Component {
 
   componentDidMount() {
     this.props.getPosts();
+    this.props.getUsers();
   }
 
   handleChangePage = (activePage) => {
@@ -32,18 +33,6 @@ export default class Posts extends React.Component {
   handleSearchBy = (event) => {
     const { value: searchBy } = event.target;
     this.props.changeSearchBy(searchBy);
-  }
-
-  postPagination = () => {
-    const { page: activePage, postsPerPage, totalPosts } = this.props;
-    return (
-      <Pagination
-        length={postsPerPage}
-        activePage={activePage}
-        totalItems={totalPosts}
-        onClickItem={this.handleChangePage}
-      />
-    );
   }
 
   toggleExpandCollapse = (index) => {
@@ -65,18 +54,18 @@ export default class Posts extends React.Component {
       totalPosts,
     } = this.props;
     return (
-      <div className="search-bar pb-3 pt-3">
+      <div className="search-bar pt-3">
         <div className="container">
           <div className="row">
-            <div className="col-md-4 col-xs-12">
+            <div className="col-md-4 col-xs-12 form-group ">
               <input type="text" placeholder="filter" className="form-control" onChange={this.handleFilter} value={searchText} />
             </div>
-            <div className="col-md-4 col-xs-12">
+            <div className="col-md-4 col-xs-12 form-group ">
               <select className="form-control" value={searchBy} onChange={this.handleSearchBy}>\
                 { searchTypes.map((option, index) => (<option key={`option-${index}`} value={option}>{option}</option>)) }
               </select>
             </div>
-            <div className="col-md-4 col-xs-12 align-self-center">
+            <div className="col-md-4 col-xs-12 align-self-center form-group">
               <Pagination
                 length={postsPerPage}
                 activePage={activePage}
@@ -90,9 +79,11 @@ export default class Posts extends React.Component {
     );
   }
 
+  getUserInfo = (userId) => this.props.users[userId] || {}
+
   render() {
     const { expandedPosts } = this.state;
-    const { paginatedPosts } = this.props;
+    const { paginatedPosts, isLoading } = this.props;
     return (
       <>
         {
@@ -102,20 +93,30 @@ export default class Posts extends React.Component {
           <div className="row">
             {
               paginatedPosts
+              && !isLoading
               && paginatedPosts.map((post, index) => (
                   <Post
                     key={post.id}
                     onExpandClick={() => this.toggleExpandCollapse(index)}
                     isExpanded={expandedPosts[index]}
                     {...post}
+                    userInfo={this.getUserInfo(post.userId)}
                     />
               ))
             }
+            {
+              !paginatedPosts.length
+              && !isLoading
+              && <div className="col-12">
+                <h4>No Results Found</h4>
+              </div>
+            }
+            {
+              isLoading
+              && <div className="col-12"><i className="fa fa-spinner fa-spin" /> Loading</div>
+            }
           </div>
         </div>
-        {
-          this.getFilterBar()
-        }
       </>
     );
   }

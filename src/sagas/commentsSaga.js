@@ -23,9 +23,11 @@ function* savePostComment(action) {
     const { postId, commentInfo } = action;
     yield put({ type: commentTypes.SAVE_POST_COMMENT_LOADING, isLoading: true });
     const comment = yield call(commentsServices.savePostComments, postId, commentInfo);
-    yield put({ type: commentTypes.SAVE_POST_COMMENT_SUCCESS, comment });
+    yield put({ type: commentTypes.SAVE_POST_COMMENT_SUCCESS, comment, message: 'Comment Saved' });
+    yield put({ type: commentTypes.SAVE_POST_COMMENT_LOADING, isLoading: false });
   } catch (error) {
-    yield put({ type: commentTypes.SAVE_POST_COMMENT_FAILURE });
+    yield put({ type: commentTypes.SAVE_POST_COMMENT_FAILURE, message: error.message });
+    yield put({ type: commentTypes.SAVE_POST_COMMENT_LOADING, isLoading: false });
   }
 }
 

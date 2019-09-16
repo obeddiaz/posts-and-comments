@@ -10,7 +10,6 @@ import {
 import Posts from './containers/Posts';
 import Comments from './containers/Comments';
 import configureStore from './store';
-// import logo from './logo.svg';
 import './App.css';
 
 function App() {
