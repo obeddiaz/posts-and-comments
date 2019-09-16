@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { createSelector } from 'reselect';
 
 const getSearchText = (state) => (state.postReducer.searchText);

@@ -11,3 +11,11 @@ export function getPosts() {
       throw new Error('Error getting posts');
     });
 }
+
+export function getPostById(postId) {
+  return axios.get(`${baseUrl}/posts/${postId}`)
+    .then((response) => (response.data))
+    .catch(() => {
+      throw new Error('Error getting posts');
+    });
+}

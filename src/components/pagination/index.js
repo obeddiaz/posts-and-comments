@@ -26,7 +26,10 @@ const PaginationComponent = (props) => {
     size = 'sm',
   } = props;
   const items = getPaginationItems(length, totalItems, activePage, onClickItem);
-  return (<div className="pull-rigth"><Pagination className="mb-0" size={size}>{items}</Pagination></div>);
+  const showPages = React.Children.count(items) > 1;
+  return (
+    showPages && <div className="pull-rigth"><Pagination className="mb-0" size={size}>{items}</Pagination></div>
+  );
 };
 
 export default PaginationComponent;

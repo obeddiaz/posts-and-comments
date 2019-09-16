@@ -1,16 +1,22 @@
 import { connect } from 'react-redux';
 
 import Comments from '../components/Comments/index';
-import * as commentActions from '../actions/comments';
+import { postActions, commentActions } from '../actions';
 
 function mapStateToProps(state) {
   const {
-    comments,
-    error,
-    message,
-    messageType,
-  } = state.commentReducer;
+    commentReducer: {
+      comments,
+      error,
+      message,
+      messageType,
+    },
+    postReducer: {
+      selectedPost,
+    },
+  } = state;
   return {
+    selectedPost,
     comments,
     error,
     message,
@@ -20,6 +26,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    getPostById: (id) => dispatch(postActions.getPostById(id)),
     getPostComments: (id) => dispatch(commentActions.getPostComments(id)),
     savePostComment: (postId, commentInfo) => (
       dispatch(commentActions.savePostComment(postId, commentInfo))

@@ -9,7 +9,6 @@ import {
   minLength,
 } from '../../utils/validation';
 
-
 const maxLength500 = maxLength(500);
 const minLength10 = minLength(10);
 

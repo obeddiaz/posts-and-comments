@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   page: 1,
   postsPerPage: 10,
   posts: [],
+  selectedPost: {},
   searchBy: 'title',
   searchTypes: ['body', 'title'],
 };
@@ -18,6 +19,11 @@ export default (state = INITIAL_STATE, action) => {
         ...INITIAL_STATE,
         posts: action.data,
         totalPosts: action.data.length,
+      };
+    case types.GET_POST_BY_ID_SUCCESS:
+      return {
+        ...INITIAL_STATE,
+        selectedPost: action.data,
       };
     case types.SEARCH_POST_TEXT:
       return {
@@ -35,10 +41,18 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         page: action.page,
       };
+    case types.GET_POST_BY_ID_LOADING:
     case types.GET_POSTS_LOADING:
       return {
         ...state,
         isLoading: action.isLoading,
+      };
+    case types.GET_POST_BY_ID_FAILURE:
+    case types.GET_POSTS_FAILURE:
+      return {
+        ...state,
+        message: action.message,
+        messageType: 'danger',
       };
     default:
       return state;

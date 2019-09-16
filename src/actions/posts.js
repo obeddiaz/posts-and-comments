@@ -1,7 +1,8 @@
-/* eslint-disable import/prefer-default-export */
 import * as types from '../constants/posts';
 
 export const getPosts = () => ({ type: types.GET_POSTS });
+
+export const getPostById = (postId) => ({ type: types.GET_POST_BY_ID, postId });
 
 export const searchPostText = (searchText) => ({ type: types.SEARCH_POST_TEXT, searchText });
 

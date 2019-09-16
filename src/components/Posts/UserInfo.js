@@ -14,7 +14,7 @@ const UserInfo = (props) => {
             </span>
         </button>
         <Overlay target={target.current} show={showUserTooltip} placement="right">
-            <Tooltip className="user-info-tooltip text-left">
+            <Tooltip className="user-info-tooltip">
             <div><i className="fa fa-user" /> { data.username }</div>
             <div><i className="fa fa-user" /> { data.name }</div>
             <div> <i className="fa fa-globe" /> { data.website }</div>

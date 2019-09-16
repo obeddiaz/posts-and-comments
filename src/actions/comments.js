@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import * as types from '../constants/comments';
 
 export const getPostComments = (id) => ({ type: types.GET_POST_COMMENTS, id });
