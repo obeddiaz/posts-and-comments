@@ -8,7 +8,7 @@ const UserInfo = (props) => {
   const [showUserTooltip, toggleUserTooltip] = useState(false);
   return (
     <>
-        <button className="btn btn-link" onClick={() => toggleUserTooltip(!showUserTooltip)}>
+        <button className="btn btn-link" onMouseLeave={() => toggleUserTooltip(false)} onClick={() => toggleUserTooltip(!showUserTooltip)}>
             <span ref={target} >
             <i className="fa fa-user" /> { data.username }
             </span>
