@@ -1,10 +1,12 @@
+@import './colors.scss';
+
 .comment-form-container {
   .form {
     &-error {
-      color: #dc3545;
+      color: $error-color;
     }
     &-warn {
-      color: #ffc107
+      color: $warn-color;
     }
   }
   .input-comment {
@@ -15,12 +17,6 @@
 
 .comments-container {
   .comment-email {
-    color: #0081ab;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .submit-btn-container {
-    order: 1;
+    color: $light-blue-color;
   }
 }

@@ -35,7 +35,7 @@ const AddCommentForm = (props) => {
               validate={[required, isEmail]}
               type="text" />
           </div>
-          <div className="col-sm-4 col-xs-12 form-group submit-btn-container">
+          <div className="col-sm-4 col-xs-12 order-1 order-sm-0 form-group submit-btn-container">
             <button type="submit" disabled={!valid} className="btn btn-success form-control">Submit</button>
           </div>
           <div className="col-12 form-group">

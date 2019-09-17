@@ -17,7 +17,7 @@ const Post = (props) => {
   return (
     <>
       <div className="col-md-4 col-xs-12 mb-2 mt-2">
-        <img className="post-image" src="images/dummy-image.jpg" alt="Post" />
+        <img className="img-fluid post-image" src="images/dummy-image.jpg" alt="Post" />
       </div>
       <div className="col-md-6 col-xs-12 mb-2 mt-2 text-left">
         <Link className="h6" to={`posts/${id}`}>{title}</Link>

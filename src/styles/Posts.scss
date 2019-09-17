@@ -1,6 +1,4 @@
-.post-image {
-  width: 100%;
-}
+@import './colors.scss';
 
 .post-text {
   width: 100%;
@@ -15,11 +13,5 @@
 }
 
 .search-bar {
-  background-color: #cecece;
-}
-
-.user-info-tooltip {
-  .tooltip-inner > div {
-    text-align: left;
-  }
+  background-color: $light-gray-color;
 }
